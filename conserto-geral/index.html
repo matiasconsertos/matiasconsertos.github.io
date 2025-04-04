@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- LANDING PAGE GERAL - FORMULÁRIO -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Caminho da logo precisa estar correto -->
+    <link rel="icon" href="../logo_matias_consertos-removebg.png" type="image/png">
+    <!-- Título Geral -->
+    <title>Matias Consertos - Seu Eletrodoméstico Quebrou? Conserto Rápido em Luziânia!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Variáveis de Cor e Tema Escuro (Idêntico ao anterior) */
+        :root {
+            --bg-primary: #fff; --bg-secondary: #f8f9fa; --bg-header-footer: linear-gradient(to bottom, #0f3a5f, #0C2F4E); --bg-header-footer-fallback: #0C2F4E; --bg-logo-wrapper: #fff; --bg-guarantee: #fef9e7;
+            --text-primary: #333; --text-secondary: #555; --text-header-footer: #fff; --text-header-footer-muted: rgba(255, 255, 255, 0.85); --text-link-footer: #4CC8D4; --text-heading: #0C2F4E; --text-guarantee: #b08d57; --text-button-primary: #fff;
+            --accent-cyan: #4CC8D4; --accent-orange: #E67E22; --accent-blue-dark: #0C2F4E; --button-whatsapp-bg: #25D366; --button-whatsapp-hover: #1DA851; --button-secondary-bg: #0C2F4E; --button-secondary-hover: #082138;
+            --border-color: #e9ecef; --border-accent: #4CC8D4; --border-guarantee: #fceea7;
+            --shadow-color: rgba(0, 0, 0, 0.1); --shadow-color-light: rgba(0, 0, 0, 0.05); --shadow-color-hover: rgba(0, 0, 0, 0.15); --shadow-logo: rgba(0, 0, 0, 0.15);
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: #1a1a1a; --bg-secondary: #2a2a2a; --bg-header-footer: linear-gradient(to bottom, #142b41, #0C2F4E); --bg-header-footer-fallback: #111f30; --bg-logo-wrapper: #fff; --bg-guarantee: #2c2a24;
+                --text-primary: #e0e0e0; --text-secondary: #b0b0b0; --text-header-footer: #f0f0f0; --text-header-footer-muted: rgba(240, 240, 240, 0.8); --text-link-footer: #5cdbe7; --text-heading: #a8d8ff; --text-guarantee: #fceea7; --text-button-primary: #1a1a1a;
+                --accent-cyan: #5cdbe7; --accent-orange: #ffb86c; --accent-blue-dark: #a8d8ff;
+                --border-color: #3a3a3a; --border-accent: #5cdbe7; --border-guarantee: #b08d57;
+                --shadow-color: rgba(255, 255, 255, 0.08); --shadow-color-light: rgba(255, 255, 255, 0.04); --shadow-color-hover: rgba(255, 255, 255, 0.12); --shadow-logo: rgba(255, 255, 255, 0.06);
+            }
+            .logo-background { border: 1px solid var(--border-color); }
+             i { color: inherit; } .benefits li i { color: var(--accent-cyan); } .how-it-works .step-item i { color: var(--accent-blue-dark); } .testimonials blockquote::before { color: var(--accent-cyan); } .guarantee-v2 i { color: var(--accent-orange); } .phone-number i { color: var(--text-header-footer); } .phone-number.dark i { color: var(--text-primary); } summary::before { color: var(--text-heading); }
+             .cta-button i, .cta-button-secondary i { .cta-button & { color: #fff; } .cta-button-secondary & { color: #fff; } }
+        }
+
+        /* Estilos Gerais (Mantidos) */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; } /* Rolagem suave para links internos */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.7; color: var(--text-primary); background-color: var(--bg-secondary); transition: background-color 0.3s, color 0.3s; }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 15px; }
+        header { background-image: var(--bg-header-footer); background-color: var(--bg-header-footer-fallback); color: var(--text-header-footer); padding: 30px 0; text-align: center; border-bottom: 3px solid var(--border-accent); }
+        header > .container { background-color: transparent; padding: 0 15px; }
+        .logo-background { display: inline-block; background-color: var(--bg-logo-wrapper); padding: 10px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 2px 6px var(--shadow-logo); line-height: 0; transition: background-color 0.3s, box-shadow 0.3s; }
+        .logo { max-height: 130px; display: block; }
+        header h1 { font-size: 2em; margin-bottom: 15px; font-weight: 700; color: var(--text-header-footer); }
+        header p { font-size: 1.2em; margin-bottom: 30px; color: var(--text-header-footer-muted); }
+        .cta-button, .cta-button-secondary, button[type="submit"] { display: inline-block; color: var(--text-button-primary); padding: 16px 32px; font-size: 1.25em; font-weight: bold; text-decoration: none; border-radius: 8px; transition: all 0.3s ease; margin-bottom: 15px; border: none; cursor: pointer; box-shadow: 0 4px 10px var(--shadow-color); }
+        /* Botão Primário Verde (WhatsApp ou Formulário principal) */
+        .cta-button { background-color: var(--button-whatsapp-bg); color: #fff; }
+        .cta-button:hover { background-color: var(--button-whatsapp-hover); transform: translateY(-2px); box-shadow: 0 6px 12px var(--shadow-color-hover); }
+        /* Botão Secundário Azul */
+        .cta-button-secondary { background-color: var(--button-secondary-bg); color: #fff;}
+        .cta-button-secondary:hover { background-color: var(--button-secondary-hover); transform: translateY(-2px); box-shadow: 0 6px 12px var(--shadow-color-hover); }
+        .cta-button i, .cta-button-secondary i { margin-right: 8px; }
+        .phone-number { display: block; color: var(--text-header-footer); font-weight: bold; margin-top: 15px; text-decoration: none; font-size: 1.15em; opacity: 0.9; }
+        .phone-number.dark { color: var(--text-primary); margin-bottom: 20px; opacity: 1; }
+        .phone-number i { margin-right: 5px; }
+        main { background-color: var(--bg-primary); }
+        section { padding: 45px 0; background-color: var(--bg-primary); transition: background-color 0.3s; }
+        section.bg-light-grey { background-color: var(--bg-secondary); }
+        section + section.bg-light-grey, section.bg-light-grey + section { border-top: 1px solid var(--border-color); transition: border-color 0.3s;}
+        h2 { text-align: center; margin-bottom: 40px; color: var(--text-heading); font-size: 1.9em; font-weight: 600; transition: color 0.3s;}
+        .benefits ul { list-style: none; padding: 0; }
+        .benefits li { margin-bottom: 18px; padding-left: 35px; position: relative; font-size: 1.1em; }
+        .benefits li i { position: absolute; left: 0; top: 4px; color: var(--accent-cyan); font-size: 1.3em; transition: color 0.3s; }
+        .how-it-works .steps-container { display: flex; flex-wrap: wrap; justify-content: space-around; text-align: center; }
+        .how-it-works .step-item { flex-basis: 45%; margin-bottom: 30px; padding: 15px; }
+        .how-it-works .step-item i { font-size: 2.5em; color: var(--accent-blue-dark); margin-bottom: 15px; display: block; transition: color 0.3s; }
+        .how-it-works .step-item h3 { font-size: 1.1em; margin-bottom: 5px; color: var(--text-heading); transition: color 0.3s;}
+        .testimonials blockquote { background-color: var(--bg-primary); border-left: none; margin: 25px auto; padding: 25px 30px 25px 50px; font-style: italic; max-width: 90%; border-radius: 8px; box-shadow: 0 5px 15px var(--shadow-color-light); position: relative; transition: background-color 0.3s, box-shadow 0.3s; }
+        .testimonials blockquote::before { content: "\f10d"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 15px; top: 20px; font-size: 1.8em; color: var(--accent-cyan); opacity: 0.8; transition: color 0.3s;}
+        .testimonials p.author { text-align: right; font-style: normal; font-weight: bold; margin-top: 15px; color: var(--text-secondary); transition: color 0.3s;}
+        .guarantee-v2 { text-align: center; font-weight: 600; color: var(--text-guarantee); border: 1px solid var(--border-guarantee); font-size: 1.15em; padding: 20px; border-radius: 8px; margin: 25px auto 10px auto; max-width: 90%; background-color: var(--bg-guarantee); transition: color 0.3s, border-color 0.3s, background-color 0.3s; }
+        .guarantee-v2 i { margin-right: 10px; color: var(--accent-orange); transition: color 0.3s; }
+        .objections p { margin-bottom: 18px; }
+        .objections strong { color: var(--text-heading); transition: color 0.3s;}
+        details { background: var(--bg-primary); border-radius: 5px; margin-bottom: 12px; border: 1px solid var(--border-color); box-shadow: 0 2px 5px var(--shadow-color-light); transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s; }
+        summary { padding: 18px 45px 18px 20px; font-weight: 600; cursor: pointer; outline: none; color: var(--text-heading); position: relative; transition: background-color 0.2s ease, color 0.3s; list-style: none; }
+        summary::-webkit-details-marker { display: none; }
+        summary:hover { background-color: var(--bg-secondary); }
+        summary::before { font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 1.1em; color: var(--text-heading); content: "\f055"; transition: transform 0.3s ease, content 0.3s ease, color 0.3s; }
+        details[open] > summary::before { content: "\f056"; transform: translateY(-50%) rotate(180deg); }
+        details[open] > summary { border-bottom: 1px solid var(--border-color); background-color: var(--bg-secondary); }
+        .faq-content { padding: 20px; border-top: 1px solid var(--border-color); background-color: var(--bg-primary); border-radius: 0 0 5px 5px; transition: background-color 0.3s, border-color 0.3s;}
+        .cta-section { text-align: center; padding: 45px 0; }
+        footer { background-image: var(--bg-header-footer); background-color: var(--bg-header-footer-fallback); color: var(--text-header-footer-muted); text-align: center; padding: 30px 0; margin-top: 0; font-size: 0.95em; border-top: 3px solid var(--border-accent); transition: color 0.3s, border-color 0.3s; }
+        footer > .container { background-color: transparent; padding: 0 15px; }
+        footer p { margin-bottom: 5px; }
+        footer a { color: var(--text-link-footer); text-decoration: none; transition: color 0.3s;}
+        footer a:hover { text-decoration: underline; }
+
+        /* --- NOVO: Estilos do Formulário --- */
+        .form-section { padding: 50px 0; }
+        .form-container { max-width: 600px; margin: 0 auto; padding: 30px; background-color: var(--bg-primary); border-radius: 8px; box-shadow: 0 5px 20px var(--shadow-color); border: 1px solid var(--border-color); transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--text-secondary); transition: color 0.3s;}
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 1em;
+            background-color: var(--bg-secondary); /* Fundo sutil diferente */
+            color: var(--text-primary);
+            transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 0 3px rgba(76, 200, 212, 0.2); /* Glow ciano no foco */
+        }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        button[type="submit"] { /* Usa o estilo do botão primário */
+             background-color: var(--button-whatsapp-bg); color: #fff; width: 100%; margin-top: 10px;
+        }
+        button[type="submit"]:hover {
+             background-color: var(--button-whatsapp-hover); transform: translateY(-2px); box-shadow: 0 6px 12px var(--shadow-color-hover);
+        }
+
+         /* --- NOVO: Estilo Botão Flutuante WhatsApp --- */
+         #floating-whatsapp-button {
+             position: fixed;
+             bottom: 25px;
+             right: 25px;
+             background-color: var(--button-whatsapp-bg);
+             color: #fff;
+             width: 60px;
+             height: 60px;
+             border-radius: 50%;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             font-size: 1.8em; /* Tamanho do ícone */
+             box-shadow: 0 4px 12px var(--shadow-color-hover);
+             text-decoration: none;
+             z-index: 1000;
+             transition: background-color 0.3s, transform 0.3s ease, box-shadow 0.3s;
+         }
+         #floating-whatsapp-button:hover {
+             background-color: var(--button-whatsapp-hover);
+             transform: scale(1.1) translateY(-2px); /* Efeito de leve pulo */
+             box-shadow: 0 6px 16px var(--shadow-color-hover);
+         }
+
+        /* Swiper Styles (Mantidos) */
+        .testimonial-swiper{width:100%;padding:10px 0 40px 0;overflow:hidden}.swiper-slide{display:flex;justify-content:center;align-items:stretch;height:auto;background:none}.swiper-slide blockquote{width:95%;max-width:95%;margin-top:0;margin-bottom:0;flex-grow:1}.swiper-button-prev,.swiper-button-next{color:var(--accent-blue-dark);width:30px;height:30px;transition:color .3s}.swiper-button-prev::after,.swiper-button-next::after{font-size:1.5rem;font-weight:bold}.swiper-button-prev:hover,.swiper-button-next:hover{color:var(--accent-cyan)}.swiper-pagination-bullet{background-color:var(--accent-blue-dark);opacity:.6;transition:background-color .3s,opacity .3s;width:10px;height:10px}.swiper-pagination-bullet-active{background-color:var(--accent-cyan);opacity:1}
+
+        /* Ajustes Responsivos (Mantidos) */
+        @media (min-width: 768px) {
+            .logo-background { padding: 15px; } .logo { max-height: 125px; } header h1 { font-size: 2.6em; } header p { font-size: 1.3em; } .cta-button, .cta-button-secondary, button[type="submit"] { font-size: 1.35em; padding: 18px 36px; } h2 { font-size: 2.2em; } .benefits li { font-size: 1.15em; } .how-it-works .step-item { flex-basis: 23%; }
+        }
+
+        /* --- NOVO: Estilos para Validação --- */
+        .error-message {
+            color: #dc3545; /* Vermelho para erro */
+            font-size: 0.85em;
+            display: none; /* Oculto por padrão */
+            margin-top: 5px;
+        }
+        .invalid-input {
+            border-color: #dc3545 !important; /* Borda vermelha para campo inválido */
+            background-color: #fff8f8 !important; /* Fundo levemente rosado opcional */
+        }
+        /* Ajuste no dark mode para erro */
+        @media (prefers-color-scheme: dark) {
+             .error-message { color: #ff8a8a; }
+             .invalid-input { background-color: #3e2a2a !important; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZQRMCWM" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <header>
+        <div class="container">
+            <div class="logo-background">
+                <img src="../logo_matias_consertos-removebg.png" alt="Logo Matias Consertos" class="logo">
+            </div>
+            <!-- Título e Subtítulo Gerais -->
+            <h1>Seu Eletrodoméstico Quebrou em Luziânia?</h1>
+            <p>Máquina de Lavar, Lava e Seca ou Geladeira? Solicite um orçamento rápido e resolva já!</p>
+            <!-- Botão Principal leva ao Formulário -->
+            <a href="#form-contato" class="cta-button">
+                 <i class="fas fa-file-signature"></i> Solicitar Orçamento Agora
+            </a>
+             <!-- Telefone removido, foco no form -->
+             <!-- <a href="tel:+5561996564567" class="phone-number"><i class="fas fa-phone-alt"></i> (61) 99656-4567</a> -->
+        </div>
+    </header>
+
+    <main>
+        <section class="benefits">
+            <div class="container">
+                 <!-- Título Benefícios Geral -->
+                <h2 data-aos="fade-up">Por Que Chamar a Matias Consertos?</h2>
+                <ul>
+                     <!-- Benefícios Gerais -->
+                    <li data-aos="fade-right" data-aos-delay="100"><i class="fas fa-search"></i><strong>Diagnóstico Honesto:</strong> Identificamos o problema real do seu aparelho, sem enrolação.</li>
+                    <li data-aos="fade-right" data-aos-delay="200"><i class="fas fa-shipping-fast"></i><strong>Agilidade Comprovada:</strong> Seu eletrodoméstico funcionando de novo rapidamente.</li>
+                    <li data-aos="fade-right" data-aos-delay="300"><i class="fas fa-user-shield"></i><strong>Confiança e Experiência:</strong> +23 anos de referência em consertos em Luziânia.</li>
+                    <li data-aos="fade-right" data-aos-delay="400"><i class="fas fa-wrench"></i><strong>Reparo de Qualidade:</strong> Usamos peças confiáveis para maior durabilidade do serviço.</li>
+                    <li data-aos="fade-right" data-aos-delay="500"><i class="fas fa-user-tie"></i><strong>Atendimento Direto:</strong> Fale com o técnico Matias, sem burocracia.</li>
+                    <li data-aos="fade-right" data-aos-delay="600"><i class="fas fa-tags"></i><strong>Preço Justo:</strong> Orçamento transparente e o melhor custo-benefício para você.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="guarantee-v2-section bg-light-grey"> <!-- Seção para Garantia V2 -->
+            <div class="container">
+                <div data-aos="zoom-in-up" class="guarantee-v2">
+                    <i class="fas fa-shield-alt"></i> Trabalho Garantido: 90 dias de cobertura no serviço realizado!
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção do Formulário Modificada -->
+<section id="form-contato" class="form-section">
+    <div class="container">
+        <h2 data-aos="fade-up">Peça seu Orçamento Detalhado</h2>
+        <p data-aos="fade-up" data-aos-delay="100" style="text-align: center; max-width: 600px; margin: -20px auto 40px auto; color: var(--text-secondary);">Preencha abaixo e entraremos em contato o mais rápido possível para agendar e resolver!</p>
+
+        <!-- Container que pode ser ocultado/mostrado -->
+        <div id="form-wrapper" class="form-container" data-aos="fade-up" data-aos-delay="200">
+            <!-- Removido action/method, adicionado ID -->
+            <form id="contact-form">
+                <!-- Campos do formulário como antes (nome, email, whatsapp, etc.) -->
+                <div class="form-group">
+                    <label for="nome">Seu Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Seu Email:</label>
+                    <input type="email" id="email" name="email" required oninput="clearError('email')">
+                    <span id="email-error" class="error-message"></span>
+                </div>
+                <div class="form-group">
+                    <label for="whatsapp">Seu WhatsApp (com DDD):</label>
+                    <input type="tel" id="whatsapp" name="whatsapp" placeholder="(XX) 9XXXX-XXXX" required oninput="clearError('whatsapp')">
+                    <span id="whatsapp-error" class="error-message"></span>
+                </div>
+                <div class="form-group">
+                   <label for="endereco">Endereço para Atendimento:</label>
+                   <input type="text" id="endereco" name="endereco" placeholder="Rua, Número, Bairro, Luziânia-GO" required>
+               </div>
+                <div class="form-group">
+                    <label for="marca">Marca do Equipamento:</label>
+                    <input type="text" id="marca" name="marca" placeholder="Ex: Brastemp, Consul, Electrolux, LG...">
+                </div>
+                <div class="form-group">
+                    <label for="modelo">Modelo (se souber):</label>
+                    <input type="text" id="modelo" name="modelo" placeholder="Ex: BWL10AB, CRM55AB, LT12F...">
+                </div>
+                <div class="form-group">
+                    <label for="problema">Descreva o Problema:</label>
+                    <textarea id="problema" name="problema" rows="5" placeholder="Ex: Não liga, não gela, vazando água, barulho estranho..." required></textarea>
+                </div>
+                <!-- Botão chama função JS -->
+                <button type="button" onclick="submitForm()">Enviar Solicitação de Orçamento</button>
+                <!-- Mensagem de status/erro do envio AJAX -->
+                <p id="form-status" style="margin-top: 15px; text-align: center; font-weight: bold;"></p>
+            </form>
+        </div>
+    </div>
+</section>
+
+        <section class="how-it-works bg-light-grey">
+             <div class="container">
+                <h2 data-aos="fade-up">Como Funciona Nosso Atendimento</h2>
+                <div class="steps-container">
+                    <div class="step-item" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-paper-plane"></i><h3>1. Solicitação</h3><p>Você envia o formulário (ou chama no WhatsApp).</p></div>
+                    <div class="step-item" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-phone-volume"></i><h3>2. Contato</h3><p>Entramos em contato rápido para confirmar e agendar.</p></div>
+                    <div class="step-item" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-map-marker-alt"></i><h3>3. Visita Técnica</h3><p>Vamos até você para diagnóstico e orçamento.</p></div>
+                    <div class="step-item" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-check-double"></i><h3>4. Serviço Feito!</h3><p>Após aprovação, consertamos seu aparelho com agilidade.</p></div>
+                </div>
+             </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="container">
+                <h2 data-aos="fade-up">Clientes Satisfeitos em Luziânia</h2>
+                <div class="swiper testimonial-swiper" data-aos="fade-in">
+                    <div class="swiper-wrapper">
+                         <div class="swiper-slide"><blockquote>"Entrei em contato com o Matias, 10 minutos e resolveu o problema,. Indico."<p class="author">- Paulo Roberto Carvalho (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"Profissional excelente! Muito responsável e compromissado com os prazos e qualidade do serviço! O melhor de Luziânia e região!"<p class="author">- Adson Marcelo (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"O sr. Matias me atendeu no mesmo dia e foi super simpático e atencioso. Solucionou o problema de forma rápida e profissional a um valor justo. Recomendo!"<p class="author">- Paulo Neira (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"Excelente serviço prestado com atenção, cuidado e bom valor"<p class="author">- Willian Silva (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"Ótimo profissional. Fez a avaliação e consertou no mesmo dia, recomendo muito."<p class="author">- Gean Carlos (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"Ótimo serviço e preço bom. Expliquei pelo telefone o problema da minha máquina de lavar, ele já veio com as peças e fez o conserto na mesma hora. Serviço de qualidade. Super indico."<p class="author">- Monierry Santos (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"Excelente atendimento. Comprometido com dias e horários marcados para atendimento. Muito honesto. Indico 👍👍"<p class="author">- Jane marcia Oliveira (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"O sr Matias é um excelente profissional. Deixou a minha geladeira novinha por um preço justo. É muito atencioso, muito educado e possui um carisma contagiante. Super recomendo os seus serviços!"<p class="author">- Leandro da Silva Alves (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"Um ótimo profissional honesto e muito dedicado no que fas. Super indico"<p class="author">- Emilce Silva botelho (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"Senhor Matias muito obrigado. Com as suas dicas a geladeira voltou a funcionar. Realmente era só limpar a mangueira em cima do motor."<p class="author">- Andreia Alves Ferreira de Souza (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"Muito satisfeita, ele é correto e preciso no defeito do eletrodoméstico. Pode confiar. Minha geladeira já foi consertada outraz vezes,mas nunca resolveram por total o defeito. O Matias fez um excelente trabalho na minha geladeira. Recomendo."<p class="author">- Meire Gomes (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"Seu Matias é top de linha demais ,não enrola e tem a solução rapidinho, parabéns seu Matias pelo ótimo trabalho e profissionalismo. Eu indico demais 👍👍"<p class="author">- Regina Ferrao (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"Matias é um excelente profissional, honesto, fácil comunicação e melhor custo beneficio entre outros profissionais."<p class="author">- Sérgio R.D (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"Ecelente atendimento...sem falar que e honesto sincero o que aconteceu com o a peça a ser concertada . Super indico.👏👏👏👏👏"<p class="author">- flavio meireles (Via Google)</p></blockquote></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about bg-light-grey">
+            <div class="container" style="text-align: center;">
+                <h2 data-aos="fade-up">Seu Técnico de Confiança em Luziânia</h2>
+                <p data-aos="fade-up" style="font-size: 1.1em; max-width: 650px; margin: 0 auto;">Há mais de duas décadas, Matias se dedica a resolver problemas de máquinas de lavar, lava e seca e geladeiras em Luziânia. A reputação foi construída na honestidade, agilidade e na satisfação de ver seu eletrodoméstico funcionando perfeitamente de novo.</p>
+            </div>
+        </section>
+
+        <section class="objections">
+             <div class="container">
+                 <h2 data-aos="fade-up">Respondendo suas Preocupações</h2>
+                 <p data-aos="fade-left"><strong>"Compensa o conserto?"</strong> Analisamos na hora e te dizemos com sinceridade se vale a pena ou não para o seu bolso.</p>
+                 <p data-aos="fade-left" data-aos-delay="100"><strong>"Vai levar uma eternidade?"</strong> Não! Nosso foco é agilizar. Aprovou o orçamento, aceleramos o reparo.</p>
+                 <p data-aos="fade-left" data-aos-delay="200"><strong>"O preço assusta?"</strong> Pode ficar tranquilo(a). Oferecemos um valor justo, sem taxas escondidas e com clareza total.</p>
+             </div>
+        </section>
+
+        <!-- Removida seção CTA duplicada, foco no formulário acima -->
+
+        <section class="faq bg-light-grey">
+            <div class="container">
+                <h2 data-aos="fade-up">Dúvidas Comuns</h2>
+                <details data-aos="fade-up"><summary>Quais tipos de eletrodomésticos consertam?</summary><div class="faq-content"><p>Somos especialistas em Máquinas de Lavar Roupa (todos os tipos), Máquinas Lava e Seca e Geladeiras/Refrigeradores das principais marcas.</p></div></details>
+                <details data-aos="fade-up" data-aos-delay="50"><summary>Atendem em toda Luziânia e região?</summary><div class="faq-content"><p>Sim, atendemos toda a área urbana de Luziânia-GO. Para regiões mais afastadas ou cidades vizinhas, por favor, consulte a disponibilidade e possível taxa de deslocamento.</p></div></details>
+                <details data-aos="fade-up" data-aos-delay="100"><summary>Qual o valor da taxa de visita?</summary><div class="faq-content"><p>Cobramos uma taxa para visita e diagnóstico, que é <strong>abatida</strong> do valor total se o serviço for aprovado. Transparência total!</p></div></details>
+                <details data-aos="fade-up" data-aos-delay="150"><summary>Que formas de pagamento são aceitas?</summary><div class="faq-content"><p>Aceitamos Dinheiro, Pix, Cartões de Débito e Crédito (consulte condições de parcelamento).</p></div></details>
+                <details data-aos="fade-up" data-aos-delay="200"><summary>Como funciona a garantia?</summary><div class="faq-content"><p>Oferecemos garantia de 90 dias sobre as peças trocadas e o serviço realizado, conforme descrito no orçamento.</p></div></details>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© <span id="currentYear"></span> Matias Consertos - Todos os direitos reservados.</p>
+            <p>Luziânia - GO | Contato: <a href="tel:+5561996564567">(61) 99656-4567</a> | <a href="https://wa.me/5561996564567?text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20o%20técnico." target="_blank">WhatsApp</a></p>
+            <p style="font-size: 0.85em; margin-top: 10px; opacity: 0.7;">Serviço de diagnóstico e conserto sujeito à avaliação técnica.</p>
+        </div>
+    </footer>
+
+     <!-- Botão Flutuante WhatsApp -->
+     <a href="https://wa.me/5561996564567?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20direto%20com%20o%20técnico." target="_blank" id="floating-whatsapp-button" data-aos="fade-up" data-aos-delay="1000" aria-label="Falar com técnico no WhatsApp">
+         <i class="fab fa-whatsapp"></i>
+     </a>
+
+    <!-- Scripts (Mantidos) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        const swiper = new Swiper('.testimonial-swiper', { slidesPerView: 1, spaceBetween: 30, loop: true, grabCursor: true, autoplay: { delay: 6000, disableOnInteraction: false }, pagination: { el: '.swiper-pagination', clickable: true }, navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }, breakpoints: { 768: { slidesPerView: 2, spaceBetween: 30 } }, autoHeight: true, });
+        AOS.init({ duration: 800, once: true, offset: 100 });
+    </script>
+
+    <script>
+        function displayError(fieldId, message) {
+            const errorSpan = document.getElementById(fieldId + '-error');
+            const inputField = document.getElementById(fieldId);
+            if (errorSpan) errorSpan.textContent = message;
+            if (errorSpan) errorSpan.style.display = 'block';
+            if (inputField) inputField.classList.add('invalid-input');
+        }
+
+        function clearError(fieldId) {
+            const errorSpan = document.getElementById(fieldId + '-error');
+            const inputField = document.getElementById(fieldId);
+            if (errorSpan) errorSpan.textContent = '';
+            if (errorSpan) errorSpan.style.display = 'none';
+            if (inputField) inputField.classList.remove('invalid-input');
+        }
+
+        function validateEmail(email) {
+            // Regex simples para estrutura de email básica
+            const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        function validatePhone(phone) {
+            if (!phone) return false;
+            // Remove todos os caracteres não numéricos
+            const digits = phone.replace(/\D/g, '');
+            // Verifica se tem 10 (fixo+DDD) ou 11 (celular+DDD) dígitos
+            return digits.length === 10 || digits.length === 11;
+        }
+
+        function validateForm() {
+            let isValid = true;
+
+            // Limpa erros anteriores
+            clearError('email');
+            clearError('whatsapp');
+
+            // Valida Email
+            const emailInput = document.getElementById('email');
+            if (emailInput && emailInput.value && !validateEmail(emailInput.value)) {
+                displayError('email', 'Por favor, insira um endereço de email válido.');
+                isValid = false;
+            }
+
+            // Valida WhatsApp/Telefone
+            const whatsappInput = document.getElementById('whatsapp');
+            if (whatsappInput && !validatePhone(whatsappInput.value)) {
+                displayError('whatsapp', 'Número inválido. Use DDD + número (10 ou 11 dígitos).');
+                isValid = false;
+            }
+
+            // Impede o envio se inválido
+            if (!isValid) {
+                // Opcional: Rolar para o primeiro erro
+                const firstError = document.querySelector('.invalid-input');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+
+            return isValid; // Retorna true para enviar, false para bloquear
+        }
+        
+        async function submitForm() {
+            // 1. Validar o formulário primeiro
+            if (!validateForm()) {
+                return; // Para a execução se a validação falhar
+            }
+
+            const form = document.getElementById('contact-form');
+            const status = document.getElementById('form-status');
+            const formData = new FormData(form);
+            const formWrapper = document.getElementById('form-wrapper');
+            const thankYouMessage = document.getElementById('thank-you-message');
+            const submitButton = form.querySelector('button[type="button"]');
+
+            // Desabilita botão e mostra carregando
+            submitButton.disabled = true;
+            status.textContent = 'Enviando...';
+            status.style.color = 'var(--text-secondary)';
+
+            try {
+                submitButton.disabled = true;
+                status.textContent = 'Enviando...';
+                status.style.color = 'var(--text-secondary)';
+
+                // Envia para o endpoint do Google Apps Script
+                const response = await fetch("https://script.google.com/macros/s/AKfycby6ytFLcIlkre-aAEWpaV28EZrCCcozvxQNCM0k5N7HU5jt_acxSxx2b1YlMf7igo6f/exec", { // <-- SUA URL AQUI
+                    method: "POST",
+                    body: formData
+                    // Sem 'mode: no-cors' e sem definir Content-Type manualmente
+                });
+
+                // Pega a resposta como TEXTO, pois HtmlService retorna HTML/texto
+                const responseText = await response.text();
+                console.log("Resposta bruta do Apps Script:", responseText); // Para Debug
+
+                // Tenta fazer o parse do JSON que está dentro do texto
+                const result = JSON.parse(responseText);
+
+                if (result.result === "success") {
+                    // SUCESSO! Redireciona para a página de Obrigado
+                    window.location.href = '/obrigado-contato/'; // <-- URL DA SUA PÁGINA DE OBRIGADO
+                } else {
+                    // Erro ou Aviso retornado pelo Apps Script
+                    status.textContent = "Oops! Houve um problema: " + (result.message || "Erro desconhecido.");
+                    console.error("Erro/Aviso do Apps Script:", result.message);
+                    status.style.color = '#dc3545';
+                    submitButton.disabled = false; // Reabilita botão em caso de erro/aviso
+                }
+            } catch (error) {
+                // Erro de rede ou erro ao fazer parse do JSON
+                status.textContent = "Oops! Houve um problema de comunicação ao enviar.";
+                console.error("Erro de Fetch ou Parse:", error);
+                status.style.color = '#dc3545';
+                submitButton.disabled = false; // Reabilita botão
+            }
+        }
+    </script>
+
+     <!-- Google Tag Manager -->
+     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+     })(window,document,'script','dataLayer','GTM-WZQRMCWM');</script>
+     <!-- End Google Tag Manager -->
+
+</body>
+</html>
