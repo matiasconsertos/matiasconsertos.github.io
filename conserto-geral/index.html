@@ -451,7 +451,10 @@
                 const response = await fetch("https://script.google.com/macros/s/AKfycby6ytFLcIlkre-aAEWpaV28EZrCCcozvxQNCM0k5N7HU5jt_acxSxx2b1YlMf7igo6f/exec", { // <-- SUA URL AQUI
                     method: "POST",
                     body: formData
-                    // Sem 'mode: no-cors' e sem definir Content-Type manualmente
+                    redirect: "follow",
+                    headers: {
+                        "Content-Type": "text/plain;charset=utf-8",
+                    },
                 });
 
                 // Pega a resposta como TEXTO, pois HtmlService retorna HTML/texto
