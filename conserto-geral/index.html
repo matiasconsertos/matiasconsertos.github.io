@@ -459,11 +459,11 @@
                 });
 
                 // Pega a resposta como TEXTO, pois HtmlService retorna HTML/texto
-                const responseText = await response.text();
-                console.log("Resposta bruta do Apps Script:", responseText); // Para Debug
+                //const responseText = await response.text();
+                //console.log("Resposta bruta do Apps Script:", responseText); // Para Debug
 
                 // Tenta fazer o parse do JSON que está dentro do texto
-                const result = JSON.parse(responseText);
+                const result = JSON.parse(response);
 
                 if (result.result === "success") {
                     // SUCESSO! Redireciona para a página de Obrigado
