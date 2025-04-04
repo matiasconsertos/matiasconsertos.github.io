@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- PÁGINA DE OBRIGADO -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Ajuste o caminho do favicon e logo se necessário -->
+    <link rel="icon" href="../logo_matias_consertos-removebg.png" type="image/png">
+    <title>Obrigado pelo Contato! - Matias Consertos</title>
+    <!-- Font Awesome (para ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- AOS (opcional para animação nesta página) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Copie TODAS as variáveis CSS (:root e @media dark) da sua landing page principal aqui */
+        :root {
+            --bg-primary: #fff; --bg-secondary: #f8f9fa; --bg-header-footer: linear-gradient(to bottom, #0f3a5f, #0C2F4E); --bg-header-footer-fallback: #0C2F4E; --bg-logo-wrapper: #fff; --bg-guarantee: #fef9e7;
+            --text-primary: #333; --text-secondary: #555; --text-header-footer: #fff; --text-header-footer-muted: rgba(255, 255, 255, 0.85); --text-link-footer: #4CC8D4; --text-heading: #0C2F4E; --text-guarantee: #b08d57; --text-button-primary: #fff;
+            --accent-cyan: #4CC8D4; --accent-orange: #E67E22; --accent-blue-dark: #0C2F4E; --button-whatsapp-bg: #25D366; --button-whatsapp-hover: #1DA851; --button-secondary-bg: #0C2F4E; --button-secondary-hover: #082138;
+            --border-color: #e9ecef; --border-accent: #4CC8D4; --border-guarantee: #fceea7;
+            --shadow-color: rgba(0, 0, 0, 0.1); --shadow-color-light: rgba(0, 0, 0, 0.05); --shadow-color-hover: rgba(0, 0, 0, 0.15); --shadow-logo: rgba(0, 0, 0, 0.15);
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: #1a1a1a; --bg-secondary: #2a2a2a; --bg-header-footer: linear-gradient(to bottom, #142b41, #0C2F4E); --bg-header-footer-fallback: #111f30; --bg-logo-wrapper: #fff; --bg-guarantee: #2c2a24;
+                --text-primary: #e0e0e0; --text-secondary: #b0b0b0; --text-header-footer: #f0f0f0; --text-header-footer-muted: rgba(240, 240, 240, 0.8); --text-link-footer: #5cdbe7; --text-heading: #a8d8ff; --text-guarantee: #fceea7; --text-button-primary: #1a1a1a;
+                --accent-cyan: #5cdbe7; --accent-orange: #ffb86c; --accent-blue-dark: #a8d8ff;
+                --border-color: #3a3a3a; --border-accent: #5cdbe7; --border-guarantee: #b08d57;
+                --shadow-color: rgba(255, 255, 255, 0.08); --shadow-color-light: rgba(255, 255, 255, 0.04); --shadow-color-hover: rgba(255, 255, 255, 0.12); --shadow-logo: rgba(255, 255, 255, 0.06);
+            }
+            .logo-background { border: 1px solid var(--border-color); }
+             i { color: inherit; } .phone-number i { color: var(--text-header-footer); } footer a { color: var(--text-link-footer); }
+             .thank-you-box i { color: var(--button-whatsapp-bg); } /* Garante cor do ícone check */
+        }
+
+        /* Estilos Gerais Simplificados para a Página de Obrigado */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.7; color: var(--text-primary); background-color: var(--bg-secondary); transition: background-color 0.3s, color 0.3s; display: flex; flex-direction: column; min-height: 100vh; }
+        .container { max-width: 700px; margin: 0 auto; padding: 0 15px; }
+
+        /* Header Simplificado (Opcional) */
+        header { background-image: var(--bg-header-footer); background-color: var(--bg-header-footer-fallback); padding: 20px 0; text-align: center; border-bottom: 3px solid var(--border-accent); }
+        header > .container { background-color: transparent; padding: 0 15px; }
+        .logo-background { display: inline-block; background-color: var(--bg-logo-wrapper); padding: 10px; border-radius: 12px; box-shadow: 0 2px 6px var(--shadow-logo); line-height: 0; transition: background-color 0.3s, box-shadow 0.3s; }
+        .logo { max-height: 80px; display: block; } /* Logo menor no obrigado */
+
+        /* Conteúdo Principal */
+        main { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 40px 0; }
+        .thank-you-box {
+            background-color: var(--bg-primary);
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+        .thank-you-box h1 {
+            color: var(--text-heading);
+            margin-bottom: 20px;
+            font-size: 2em;
+            font-weight: 600;
+        }
+        .thank-you-box p {
+            font-size: 1.1em;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .thank-you-box .icon {
+            font-size: 4em;
+            color: var(--button-whatsapp-bg); /* Verde sucesso */
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+         /* Botão opcional */
+         .cta-button-secondary { display: inline-block; color: var(--text-button-primary); padding: 12px 25px; font-size: 1.1em; font-weight: bold; text-decoration: none; border-radius: 8px; transition: all 0.3s ease; margin-top: 20px; border: none; cursor: pointer; box-shadow: 0 4px 10px var(--shadow-color); background-color: var(--button-secondary-bg); color: #fff;}
+         .cta-button-secondary:hover { background-color: var(--button-secondary-hover); transform: translateY(-2px); box-shadow: 0 6px 12px var(--shadow-color-hover); }
+         .cta-button-secondary i { margin-right: 8px; }
+
+        /* Footer (Idêntico) */
+        footer { background-image: var(--bg-header-footer); background-color: var(--bg-header-footer-fallback); color: var(--text-header-footer-muted); text-align: center; padding: 30px 0; margin-top: auto; font-size: 0.95em; border-top: 3px solid var(--border-accent); transition: color 0.3s, border-color 0.3s; }
+        footer > .container { background-color: transparent; padding: 0 15px; }
+        footer p { margin-bottom: 5px; }
+        footer a { color: var(--text-link-footer); text-decoration: none; transition: color 0.3s;}
+        footer a:hover { text-decoration: underline; }
+    </style>
+    <!-- Google Tag Manager (head) - COLE SEU SNIPPET AQUI -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WZQRMCWM');</script>
+    <!-- End Google Tag Manager (head) -->
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) - COLE SEU SNIPPET AQUI -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZQRMCWM"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <header>
+        <div class="container">
+            <div class="logo-background">
+                <!-- Ajuste o caminho se necessário -->
+                <img src="../logo_matias_consertos-removebg.png" alt="Logo Matias Consertos" class="logo">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="thank-you-box" data-aos="zoom-in">
+                <div class="icon"><i class="fas fa-check-circle"></i></div>
+                <h1>Solicitação Recebida!</h1>
+                <p>Obrigado por entrar em contato com a Matias Consertos.</p>
+                <p>Recebemos seus dados e nossa equipe entrará em contato o mais breve possível para agendar sua visita.</p>
+                 <!-- Botão opcional para voltar -->
+                 <a href="/" class="cta-button-secondary"><i class="fas fa-home"></i> Voltar ao Início</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© <span id="currentYear"></span> Matias Consertos - Todos os direitos reservados.</p>
+            <p>Luziânia - GO | Contato: <a href="tel:+5561996564567">(61) 99656-4567</a> | <a href="https://wa.me/5561996564567?text=Olá,%20enviei%20um%20formulário%20pelo%20site." target="_blank">WhatsApp</a></p>
+            <p style="font-size: 0.85em; margin-top: 10px; opacity: 0.7;">Serviço de diagnóstico e conserto sujeito à avaliação técnica.</p>
+        </div>
+    </footer>
+
+    <!-- Script AOS (Opcional) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        // Inicializa AOS se quiser animação na caixa de obrigado
+        AOS.init({ duration: 600, once: true });
+    </script>
+
+</body>
+</html>
