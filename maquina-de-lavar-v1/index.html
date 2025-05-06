@@ -212,6 +212,50 @@
             .how-it-works .step-item { flex-basis: 23%; }
         }
 
+        /* --- Background Images for Alternating Sections --- */
+        section.benefits,
+        section.testimonials,
+        section.cta-section { /* main > section:nth-of-type(5) was removed here */
+            position: relative; /* Required for z-index stacking of pseudo-element */
+            z-index: 0; /* Creates a new stacking context */
+        }
+
+        section.benefits::before,
+        section.testimonials::before,
+        section.cta-section::before { /* main > section:nth-of-type(5)::before was removed here */
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.07; /* Adjust for desired faintness of the image. Lower = more faint, e.g., 0.05 to 0.15 */
+            z-index: -1; /* Places the pseudo-element behind the section's content, but on top of its background-color */
+            pointer-events: none; /* Ensure it doesn't interfere with mouse events */
+        }
+
+        /*
+           NOTE: Create the following image files and place them in the 'maquina-de-lavar-v1/' folder.
+           You can use any images you like, these are placeholder names.
+           - bg-benefits.jpg (now ../assets/maquina_ferramentas.webp)
+           - bg-testimonials.jpg (now ../assets/maquina_brastemp.avif)
+           - bg-cta.jpg (now ../assets/maquina_electrolux_brastemp.jpg)
+        */
+        section.benefits::before {
+            background-image: url('../assets/maquina_ferramentas.webp');
+        }
+
+        section.testimonials::before {
+            background-image: url('../assets/maquina_brastemp.avif');
+        }
+
+        section.cta-section::before {
+            background-image: url('../assets/maquina_electrolux_brastemp.jpg');
+        }
+        /* --- End Background Images for Alternating Sections --- */
+
                 /* --- Estilização Swiper --- */
                 .testimonial-swiper {
             width: 100%;
@@ -271,6 +315,66 @@
             background-color: var(--accent-cyan); /* Cor da bolinha ativa */
             opacity: 1;
         }
+
+        /* --- About Section Styles --- */
+        .about .container {
+            /* text-align: center; removed from inline style, h2 is centered below */
+        }
+        .about h2 { /* Ensures h2 remains centered if container is not text-align:center */
+            text-align: center;
+        }
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 30px; /* Space between image and text */
+            margin-top: 25px; /* Space below the h2 */
+            flex-wrap: wrap; /* Allow wrapping for responsiveness */
+            justify-content: center; /* Center items if they wrap on smaller screens before media query */
+        }
+        .about-image-wrapper {
+            flex-shrink: 0;
+            text-align: center; /* Center image if it wraps alone */
+        }
+        .about-matias-pic {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--border-accent); /* Adjusted border */
+            box-shadow: 0 4px 12px var(--shadow-color); /* Slightly more prominent shadow */
+        }
+        .about-text {
+            flex: 1; /* Allow text to take available space */
+            min-width: 280px; /* Prevent text from becoming too narrow */
+        }
+        .about-text p {
+            font-size: 1.1em;
+            text-align: left;
+            /* max-width: 650px; /* Can be adjusted or removed based on flex behavior */
+            /* margin: 0 auto; /* Not needed with flex */
+        }
+        /* --- End About Section Styles --- */
+
+        /* --- Responsive adjustments for About Section --- */
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            .about-image-wrapper {
+                margin-bottom: 0; /* Gap handles spacing */
+            }
+            .about-matias-pic {
+                width: 160px; /* Slightly smaller on mobile */
+                height: 160px;
+            }
+            .about-text p {
+                text-align: center;
+                font-size: 1.05em; /* Slightly adjust font size on mobile */
+            }
+        }
+        /* --- End Responsive adjustments for About Section --- */
 
     </style>
     <!-- Google tag (gtag.js) -->
@@ -397,9 +501,16 @@
         </section>
 
         <section class="about bg-light-grey">
-            <div class="container" style="text-align: center;">
+            <div class="container">
                 <h2 data-aos="fade-up">Conheça o Matias</h2>
-                <p data-aos="fade-up" style="font-size: 1.1em; max-width: 650px; margin: 0 auto;">Com 23 anos de experiência no conserto de máquinas de lavar, lava e seca e geladeiras, Matias é referência em Luziânia e região pela qualidade e honestidade. Nosso foco é resolver seu problema com agilidade e um atendimento que você pode confiar.</p>
+                <div class="about-content">
+                    <div class="about-image-wrapper" data-aos="fade-right" data-aos-delay="100">
+                        <img src="../assets/deusdedit_matias.webp" alt="Matias, técnico de máquinas de lavar" class="about-matias-pic">
+                    </div>
+                    <div class="about-text" data-aos="fade-left" data-aos-delay="200">
+                        <p>Com 23 anos de experiência no conserto de máquinas de lavar, lava e seca e geladeiras, Matias é referência em Luziânia e região pela qualidade e honestidade. Nosso foco é resolver seu problema com agilidade e um atendimento que você pode confiar.</p>
+                    </div>
+                </div>
             </div>
         </section>
 

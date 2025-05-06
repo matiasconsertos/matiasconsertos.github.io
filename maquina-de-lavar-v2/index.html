@@ -182,6 +182,97 @@
         }
         /* Swiper Styles (Idênticos à V1) */
         .testimonial-swiper{width:100%;padding:10px 0 40px 0;overflow:hidden}.swiper-slide{display:flex;justify-content:center;align-items:stretch;height:auto;background:none}.swiper-slide blockquote{width:95%;max-width:95%;margin-top:0;margin-bottom:0;flex-grow:1}.swiper-button-prev,.swiper-button-next{color:var(--accent-blue-dark);width:30px;height:30px;transition:color .3s}.swiper-button-prev::after,.swiper-button-next::after{font-size:1.5rem;font-weight:bold}.swiper-button-prev:hover,.swiper-button-next:hover{color:var(--accent-cyan)}.swiper-pagination-bullet{background-color:var(--accent-blue-dark);opacity:.6;transition:background-color .3s,opacity .3s;width:10px;height:10px}.swiper-pagination-bullet-active{background-color:var(--accent-cyan);opacity:1}
+
+        /* --- About Section Styles (Mirrored from V1) --- */
+        .about .container {
+            /* text-align: center; removed from inline style, h2 is centered below */
+        }
+        .about h2 { /* Ensures h2 remains centered */
+            text-align: center;
+        }
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 30px; /* Space between image and text */
+            margin-top: 25px; /* Space below the h2 */
+            flex-wrap: wrap; /* Allow wrapping for responsiveness */
+            justify-content: center;
+        }
+        .about-image-wrapper {
+            flex-shrink: 0;
+            text-align: center;
+        }
+        .about-matias-pic {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--border-accent);
+            box-shadow: 0 4px 12px var(--shadow-color);
+        }
+        .about-text {
+            flex: 1;
+            min-width: 280px;
+        }
+        .about-text p {
+            font-size: 1.1em;
+            text-align: left;
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            .about-matias-pic {
+                width: 160px;
+                height: 160px;
+            }
+            .about-text p {
+                text-align: center;
+                font-size: 1.05em;
+            }
+        }
+        /* --- End About Section Styles --- */
+
+        /* --- Background Images for Alternating Sections (Mirrored from V1 logic) --- */
+        section.benefits,
+        section.testimonials,
+        section.cta-section {
+            position: relative;
+            z-index: 0;
+        }
+
+        section.benefits::before,
+        section.testimonials::before,
+        section.cta-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.07; /* Adjust for desired faintness */
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* NOTE: Provide actual image files as needed */
+        section.benefits::before {
+            background-image: url('../assets/maquina_ferramentas.webp');
+        }
+        
+        section.testimonials::before {
+            background-image: url('../assets/maquina_brastemp.avif');
+        }
+
+        section.cta-section::before {
+            background-image: url('../assets/maquina_electrolux_brastemp.jpg');
+        }
+        /* --- End Background Images for Alternating Sections --- */
     </style>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2RH46369F5">
@@ -255,7 +346,7 @@
                 </div>
                  <div style="text-align: center; margin-top: 20px;">
                      <!-- CTA V2 -->
-                    <a href="https://wa.me/5561996564567?text=Olá!%20Minha%20máquina%20de%20lavar%20precisa%20de%20conserto,%20podemos%20agendar%20uma%20visita%3F" target="_blank" class="cta-button-secondary"><i class="far fa-calendar-alt"></i> Agendar Visita Técnica</a>
+                    <a href="https://wa.me/5561996564567?text=Olá!%20Minha%20máquina%20precisa%20de%20conserto,%20podemos%20agendar%20uma%20visita%3F" target="_blank" class="cta-button-secondary"><i class="far fa-calendar-alt"></i> Agendar Visita Técnica</a>
                  </div>
              </div>
         </section>
@@ -289,10 +380,17 @@
         </section>
 
         <section class="about"> <!-- Alterna fundo -->
-            <div class="container" style="text-align: center;">
+            <div class="container">
                 <h2 data-aos="fade-up">Seu Técnico de Confiança em Luziânia</h2>
-                <!-- Copywriting V2 -->
-                <p data-aos="fade-up" style="font-size: 1.1em; max-width: 650px; margin: 0 auto;">Há mais de duas décadas, Matias se dedica a resolver problemas de máquinas de lavar, lava e seca e geladeiras em Luziânia. A reputação foi construída na honestidade, agilidade e na satisfação de ver seu eletrodoméstico funcionando perfeitamente de novo.</p>
+                <div class="about-content">
+                    <div class="about-image-wrapper" data-aos="fade-right" data-aos-delay="100">
+                        <img src="../assets/deusdedit_matias.webp" alt="Matias, técnico de máquinas de lavar" class="about-matias-pic">
+                    </div>
+                    <div class="about-text" data-aos="fade-left" data-aos-delay="200">
+                        <!-- Copywriting V2 -->
+                        <p>Há mais de duas décadas, Matias se dedica a resolver problemas de máquinas de lavar, lava e seca e geladeiras em Luziânia. A reputação foi construída na honestidade, agilidade e na satisfação de ver seu eletrodoméstico funcionando perfeitamente de novo.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
