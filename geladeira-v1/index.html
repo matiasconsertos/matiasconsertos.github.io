@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- LANDING PAGE V1 - Geladeira -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Caminho da logo ajustado para pasta interna -->
+    <link rel="icon" href="../logo_matias_consertos-removebg.png" type="image/png">
+    <title>Matias Consertos - Sua Geladeira Quebrou? Não Perca Seus Alimentos!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* --- Definição de Variáveis de Cor (Tema Claro - Padrão) --- */
+        :root {
+            --bg-primary: #fff;
+            --bg-secondary: #f8f9fa;
+            --bg-header-footer: linear-gradient(to bottom, #0f3a5f, #0C2F4E);
+            --bg-header-footer-fallback: #0C2F4E;
+            --bg-logo-wrapper: #fff;
+            --bg-guarantee: #fef9e7; /* Fundo amarelo claro para garantia V2 */
+
+            --text-primary: #333;
+            --text-secondary: #555;
+            --text-header-footer: #fff;
+            --text-header-footer-muted: rgba(255, 255, 255, 0.85);
+            --text-link-footer: #4CC8D4;
+            --text-heading: #0C2F4E;
+            --text-guarantee: #b08d57; /* Texto mais escuro para fundo claro */
+            --text-button-primary: #fff;
+
+            --accent-cyan: #4CC8D4;
+            --accent-orange: #E67E22; /* Mantido para ícone */
+            --accent-blue-dark: #0C2F4E;
+            --button-whatsapp-bg: #25D366;
+            --button-whatsapp-hover: #1DA851;
+            --button-secondary-bg: #0C2F4E;
+            --button-secondary-hover: #082138;
+
+            --border-color: #e9ecef;
+            --border-accent: #4CC8D4;
+            --border-guarantee: #fceea7; /* Borda sutil para caixa garantia V2 */
+
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --shadow-color-light: rgba(0, 0, 0, 0.05);
+            --shadow-color-hover: rgba(0, 0, 0, 0.15);
+            --shadow-logo: rgba(0, 0, 0, 0.15);
+        }
+
+        /* --- Tema Escuro (Ativado pela preferência do OS/Navegador) --- */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: #1a1a1a;
+                --bg-secondary: #2a2a2a;
+                --bg-header-footer: linear-gradient(to bottom, #142b41, #0C2F4E);
+                --bg-header-footer-fallback: #111f30;
+                --bg-logo-wrapper: #fff;
+                --bg-guarantee: #2c2a24; /* Fundo escuro sutil para garantia V2 Dark */
+
+
+                --text-primary: #e0e0e0;
+                --text-secondary: #b0b0b0;
+                --text-header-footer: #f0f0f0;
+                --text-header-footer-muted: rgba(240, 240, 240, 0.8);
+                --text-link-footer: #5cdbe7;
+                --text-heading: #a8d8ff;
+                --text-guarantee: #fceea7; /* Texto claro para fundo escuro */
+                --text-button-primary: #1a1a1a;
+
+                --accent-cyan: #5cdbe7;
+                --accent-orange: #ffb86c;
+                --accent-blue-dark: #a8d8ff;
+
+                --border-color: #3a3a3a;
+                --border-accent: #5cdbe7;
+                --border-guarantee: #b08d57; /* Borda sutil para caixa garantia V2 Dark */
+
+
+                --shadow-color: rgba(255, 255, 255, 0.08);
+                --shadow-color-light: rgba(255, 255, 255, 0.04);
+                --shadow-color-hover: rgba(255, 255, 255, 0.12);
+                --shadow-logo: rgba(255, 255, 255, 0.06);
+            }
+            .logo-background { border: 1px solid var(--border-color); }
+             i { color: inherit; }
+             .benefits li i { color: var(--accent-cyan); }
+             .how-it-works .step-item i { color: var(--accent-blue-dark); }
+             .testimonials blockquote::before { color: var(--accent-cyan); }
+             .guarantee i { color: var(--accent-orange); }
+             .phone-number i { color: var(--text-header-footer); }
+             .phone-number.dark i { color: var(--text-primary); }
+             summary::before { color: var(--text-heading); }
+             .cta-button i, .cta-button-secondary i {
+                 .cta-button & { color: #fff; }
+                 .cta-button-secondary & { color: #fff; }
+             }
+        }
+
+        /* --- Estilos Gerais (Idênticos à V1, exceto .guarantee) --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.7; color: var(--text-primary); background-color: var(--bg-secondary); transition: background-color 0.3s, color 0.3s; }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 15px; }
+        header { background-image: var(--bg-header-footer); background-color: var(--bg-header-footer-fallback); color: var(--text-header-footer); padding: 30px 0; text-align: center; border-bottom: 3px solid var(--border-accent); }
+        header > .container { background-color: transparent; padding: 0 15px; }
+        .logo-background { display: inline-block; background-color: var(--bg-logo-wrapper); padding: 10px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 2px 6px var(--shadow-logo); line-height: 0; transition: background-color 0.3s, box-shadow 0.3s; }
+        .logo { max-height: 130px; display: block; }
+        header h1 { font-size: 2em; margin-bottom: 15px; font-weight: 700; color: var(--text-header-footer); } /* Mais espaço */
+        header p { font-size: 1.2em; margin-bottom: 30px; color: var(--text-header-footer-muted); }
+        .cta-button, .cta-button-secondary { display: inline-block; color: var(--text-button-primary); padding: 16px 32px; font-size: 1.25em; font-weight: bold; text-decoration: none; border-radius: 8px; transition: all 0.3s ease; margin-bottom: 15px; border: none; cursor: pointer; box-shadow: 0 4px 10px var(--shadow-color); }
+        .cta-button { background-color: var(--button-whatsapp-bg); color: #fff; } /* Forçar texto branco no botão whats */
+        .cta-button:hover { background-color: var(--button-whatsapp-hover); transform: translateY(-2px); box-shadow: 0 6px 12px var(--shadow-color-hover); }
+        .cta-button-secondary { background-color: var(--button-secondary-bg); color: #fff;} /* Forçar texto branco */
+        .cta-button-secondary:hover { background-color: var(--button-secondary-hover); transform: translateY(-2px); box-shadow: 0 6px 12px var(--shadow-color-hover); }
+        .cta-button i, .cta-button-secondary i { margin-right: 8px; }
+        .phone-number { display: block; color: var(--text-header-footer); font-weight: bold; margin-top: 15px; text-decoration: none; font-size: 1.15em; opacity: 0.9; }
+        .phone-number.dark { color: var(--text-primary); margin-bottom: 20px; opacity: 1; }
+        .phone-number i { margin-right: 5px; }
+        main { background-color: var(--bg-primary); } /* Garante fundo principal em main */
+        section { padding: 45px 0; background-color: var(--bg-primary); transition: background-color 0.3s; } /* Garante fundo principal em seções */
+        section.bg-light-grey { background-color: var(--bg-secondary); } /* Fundo alternado */
+        section + section.bg-light-grey, section.bg-light-grey + section { border-top: 1px solid var(--border-color); transition: border-color 0.3s;} /* Borda entre seções alternadas */
+
+        h2 { text-align: center; margin-bottom: 40px; color: var(--text-heading); font-size: 1.9em; font-weight: 600; transition: color 0.3s;}
+
+        /* Benefícios */
+        .benefits ul { list-style: none; padding: 0; } /* Remove marcador de lista */
+        .benefits li { margin-bottom: 18px; padding-left: 35px; position: relative; font-size: 1.1em; } /* Espaçamento e indentação */
+        .benefits li i { position: absolute; left: 0; top: 4px; color: var(--accent-cyan); font-size: 1.3em; transition: color 0.3s; } /* Ícone de check */
+
+        /* Como Funciona */
+        .how-it-works .steps-container { display: flex; flex-wrap: wrap; justify-content: space-around; text-align: center; } /* Layout responsivo */
+        .how-it-works .step-item { flex-basis: 45%; margin-bottom: 30px; padding: 15px; } /* Tamanho e espaçamento dos itens */
+        .how-it-works .step-item i { font-size: 2.5em; color: var(--accent-blue-dark); margin-bottom: 15px; display: block; transition: color 0.3s; } /* Ícone do passo */
+        .how-it-works .step-item h3 { font-size: 1.1em; margin-bottom: 5px; color: var(--text-heading); font-weight: 600; transition: color 0.3s;} /* Título do passo */
+        @media (max-width: 600px) { .how-it-works .step-item { flex-basis: 90%; } } /* Ajuste mobile */
+
+        /* Depoimentos */
+        .testimonials blockquote { background-color: var(--bg-primary); border-left: none; margin: 25px auto; padding: 25px 30px 25px 50px; font-style: italic; max-width: 90%; border-radius: 8px; box-shadow: 0 5px 15px var(--shadow-color-light); position: relative; transition: background-color 0.3s, box-shadow 0.3s; } /* Estilo do box de depoimento */
+        .testimonials blockquote::before { content: "\f10d"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 15px; top: 20px; font-size: 1.8em; color: var(--accent-cyan); opacity: 0.8; transition: color 0.3s;} /* Ícone de aspas */
+        .testimonials p.author { text-align: right; font-style: normal; font-weight: bold; margin-top: 15px; color: var(--text-secondary); transition: color 0.3s;} /* Estilo do autor */
+
+        /* Garantia V2 */
+        .guarantee-v2 {
+            text-align: center;
+            font-weight: 600; /* Um pouco mais forte */
+            color: var(--text-guarantee);
+            border: 1px solid var(--border-guarantee); /* Borda sutil */
+            font-size: 1.15em;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px auto 10px auto; /* Mais margem acima */
+            max-width: 90%;
+            background-color: var(--bg-guarantee); /* Fundo sólido */
+            transition: color 0.3s, border-color 0.3s, background-color 0.3s; /* Transições suaves */
+        }
+        .guarantee-v2 i {
+            margin-right: 10px;
+            color: var(--accent-orange); /* Usa laranja no ícone */
+            transition: color 0.3s;
+        }
+        /* Remover estilo antigo se existir */
+        .guarantee { display: none; }
+
+        /* Quebra de Objeções */
+        .objections p { margin-bottom: 18px; } /* Espaço entre parágrafos */
+        .objections strong { color: var(--text-heading); transition: color 0.3s;} /* Cor do texto em negrito */
+
+        /* FAQ */
+        details { background: var(--bg-primary); border-radius: 5px; margin-bottom: 12px; border: 1px solid var(--border-color); box-shadow: 0 2px 5px var(--shadow-color-light); transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s; } /* Estilo da caixa FAQ */
+        summary { padding: 18px 45px 18px 20px; font-weight: 600; cursor: pointer; outline: none; color: var(--text-heading); position: relative; transition: background-color 0.2s ease, color 0.3s; list-style: none; } /* Estilo do título FAQ */
+        summary::-webkit-details-marker { display: none; } /* Remove marcador padrão */
+        summary:hover { background-color: var(--bg-secondary); } /* Efeito hover */
+        summary::before { font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 1.1em; color: var(--text-heading); content: "\f055"; transition: transform 0.3s ease, content 0.3s ease, color 0.3s; } /* Ícone de abrir/fechar */
+        details[open] > summary::before { content: "\f056"; transform: translateY(-50%) rotate(180deg); } /* Ícone quando aberto */
+        details[open] > summary { border-bottom: 1px solid var(--border-color); background-color: var(--bg-secondary); } /* Estilo do título quando aberto */
+        .faq-content { padding: 20px; border-top: 1px solid var(--border-color); background-color: var(--bg-primary); border-radius: 0 0 5px 5px; transition: background-color 0.3s, border-color 0.3s;} /* Estilo do conteúdo FAQ */
+
+        /* CTAs */
+        .cta-section { text-align: center; padding: 45px 0; } /* Estilo da seção CTA */
+
+        /* Footer */
+        footer { background-image: var(--bg-header-footer); background-color: var(--bg-header-footer-fallback); color: var(--text-header-footer-muted); text-align: center; padding: 30px 0; margin-top: 0; font-size: 0.95em; border-top: 3px solid var(--border-accent); transition: color 0.3s, border-color 0.3s; } /* Estilo do footer */
+        footer > .container { background-color: transparent; padding: 0 15px; } /* Garante padding interno */
+        footer p { margin-bottom: 5px; } /* Espaço entre parágrafos */
+        footer a { color: var(--text-link-footer); text-decoration: none; transition: color 0.3s;} /* Estilo dos links */
+        footer a:hover { text-decoration: underline; } /* Efeito hover */
+
+        /* Ajustes Responsivos */
+        @media (min-width: 768px) {
+            .logo-background { padding: 15px; } /* Padding Desktop Reduzido */
+            .logo { max-height: 125px; } /* Altura Desktop Ajustada */
+            header h1 { font-size: 2.6em; } /* Ajuste leve */
+            header p { font-size: 1.3em; } /* Ajuste leve */
+            .cta-button, .cta-button-secondary { font-size: 1.35em; padding: 18px 36px; } /* Botões maiores */
+            h2 { font-size: 2.2em; } /* Títulos maiores */
+            .benefits li { font-size: 1.15em; } /* Lista maior */
+            .how-it-works .step-item { flex-basis: 23%; } /* Layout desktop */
+        }
+        /* Swiper Styles (Idênticos à V2) */
+        .testimonial-swiper{width:100%;padding:10px 0 40px 0;overflow:hidden}.swiper-slide{display:flex;justify-content:center;align-items:stretch;height:auto;background:none}.swiper-slide blockquote{width:95%;max-width:95%;margin-top:0;margin-bottom:0;flex-grow:1}.swiper-button-prev,.swiper-button-next{color:var(--accent-blue-dark);width:30px;height:30px;transition:color .3s}.swiper-button-prev::after,.swiper-button-next::after{font-size:1.5rem;font-weight:bold}.swiper-button-prev:hover,.swiper-button-next:hover{color:var(--accent-cyan)}.swiper-pagination-bullet{background-color:var(--accent-blue-dark);opacity:.6;transition:background-color .3s,opacity .3s;width:10px;height:10px}.swiper-pagination-bullet-active{background-color:var(--accent-cyan);opacity:1}
+
+        /* --- About Section Styles (Mirrored from V2) --- */
+        .about .container { /* text-align: center; removed from inline style, h2 is centered below */ }
+        .about h2 { /* Ensures h2 remains centered */ text-align: center; }
+        .about-content { display: flex; align-items: center; gap: 30px; margin-top: 25px; flex-wrap: wrap; justify-content: center; } /* Layout responsivo */
+        .about-image-wrapper { flex-shrink: 0; text-align: center; } /* Wrapper da imagem */
+        .about-matias-pic { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 4px solid var(--border-accent); box-shadow: 0 4px 12px var(--shadow-color); } /* Estilo da imagem */
+        .about-text { flex: 1; min-width: 280px; } /* Texto flexível */
+        .about-text p { font-size: 1.1em; text-align: left; } /* Estilo do texto */
+        @media (max-width: 768px) { .about-content { flex-direction: column; text-align: center; gap: 20px; } .about-matias-pic { width: 160px; height: 160px; } .about-text p { text-align: center; font-size: 1.05em; } } /* Ajustes mobile */
+
+        /* --- Background Images for Alternating Sections (Mirrored from V2 logic) --- */
+        section.benefits,
+        section.testimonials,
+        section.cta-section {
+            position: relative;
+            z-index: 0;
+        }
+
+        section.benefits::before,
+        section.testimonials::before,
+        section.cta-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center; /* or top center */
+            opacity: 0.07; /* Adjust for desired faintness */
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* NOTE: Provide actual image files as needed */
+        section.benefits::before {
+            background-image: url('../assets/geladeira-inox-corpo.webp'); /* Refrigerator image */
+        }
+
+        section.testimonials::before {
+            background-image: url('../assets/maquina_brastemp.avif'); /* Keep or change testimonial image */
+        }
+
+        section.cta-section::before {
+            background-image: url('../assets/geladeiras-desconto.jpg'); /* Refrigerator image */
+        }
+        /* --- End Background Images for Alternating Sections --- */
+    </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2RH46369F5">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-2RH46369F5');
+    </script>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZQRMCWM"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <header>
+        <div class="container">
+            <div class="logo-background">
+                 <!-- Caminho da logo ajustado -->
+                <img src="../logo_matias_consertos-removebg.png" alt="Logo Matias Consertos" class="logo">
+            </div>
+            <!-- Copywriting Geladeira -->
+            <h1>Sua Geladeira Parou em Luziânia?</h1>
+            <p>Não perca seus alimentos! Conserto rápido e confiável. Chame no WhatsApp e agende fácil!</p>
+            <!-- CTA Geladeira -->
+            <a href="https://wa.me/5561996564567?text=Olá!%20Minha%20geladeira%20quebrou,%20preciso%20de%20um%20orçamento." target="_blank" class="cta-button">
+                 <i class="fab fa-whatsapp"></i> Pedir Orçamento Rápido
+            </a>
+            <a href="tel:+5561996564567" class="phone-number"><i class="fas fa-phone-alt"></i> (61) 99656-4567</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="benefits">
+            <div class="container">
+                <h2 data-aos="fade-up">Mantenha Seus Alimentos Frescos!</h2>
+                <ul>
+                    <!-- Copywriting Geladeira -->
+                    <li data-aos="fade-right" data-aos-delay="100"><i class="fas fa-search"></i><strong>Diagnóstico Honesto:</strong> Saiba o defeito real da sua geladeira, sem enrolação.</li>
+                    <li data-aos="fade-right" data-aos-delay="200"><i class="fas fa-shipping-fast"></i><strong>Solução Rápida:</strong> Sua geladeira funcionando de novo o mais rápido possível.</li>
+                    <li data-aos="fade-right" data-aos-delay="300"><i class="fas fa-user-shield"></i><strong>Confiança Comprovada:</strong> +23 anos de experiência e clientes satisfeitos em Luziânia.</li>
+                    <li data-aos="fade-right" data-aos-delay="400"><i class="fas fa-wrench"></i><strong>Reparo Que Dura:</strong> Usamos peças de qualidade para um conserto confiável.</li>
+                    <li data-aos="fade-right" data-aos-delay="500"><i class="fas fa-user-tie"></i><strong>Fale Com Quem Resolve:</strong> Atendimento direto com o técnico Matias, sem intermediários.</li>
+                    <li data-aos="fade-right" data-aos-delay="600"><i class="fas fa-tags"></i><strong>Valor Justo:</strong> Orçamento transparente e justo pelo melhor serviço da região.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Seção Garantia V2 -->
+        <section class="bg-light-grey"> <!-- Fundo diferente para destacar -->
+             <div class="container">
+                 <!-- Novo estilo visual V2 -->
+                <div data-aos="zoom-in-up" class="guarantee-v2">
+                    <i class="fas fa-shield-alt"></i> Sua Satisfação Garantida: Cobertura de 90 dias no serviço!</div>
+             </div>
+        </section>
+
+        <section class="how-it-works"> <!-- Alterna fundo de volta -->
+             <div class="container">
+                <h2 data-aos="fade-up">Consertar Sua Geladeira é Fácil Assim:</h2>
+                <div class="steps-container">
+                     <!-- Copywriting Geladeira -->
+                    <div class="step-item" data-aos="fade-up" data-aos-delay="100"><i class="fab fa-whatsapp-square"></i><h3>1. Chame no Zap</h3><p>Envie uma mensagem rápida descrevendo o problema da sua geladeira.</p></div>
+                    <div class="step-item" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-calendar-check"></i><h3>2. Agende a Visita</h3><p>Após envio de endereço e localização, marcamos o melhor horário para avaliar sua geladeira.</p></div>
+                    <div class="step-item" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-file-invoice-dollar"></i><h3>3. Receba o Orçamento</h3><p>Diagnóstico claro com o valor justo do conserto.</p></div>
+                    <div class="step-item" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-check-double"></i><h3>4. Geladeira Pronta!</h3><p>Aprovou? Realizamos o serviço com rapidez e eficiência.</p></div>
+                </div>
+                 <div style="text-align: center; margin-top: 20px;">
+                     <!-- CTA Geladeira -->
+                    <a href="https://wa.me/5561996564567?text=Olá!%20Minha%20geladeira%20precisa%20de%20conserto,%20podemos%20agendar%20uma%20visita?" target="_blank" class="cta-button-secondary"><i class="far fa-calendar-alt"></i> Agendar Visita Técnica</a>
+                 </div>
+             </div>
+        </section>
+
+        <section class="testimonials bg-light-grey"> <!-- Alterna fundo -->
+            <div class="container">
+                <h2 data-aos="fade-up">Quem Consertou Com a Gente, Aprova!</h2>
+                <!-- Slider Swiper (Estrutura e conteúdo idênticos à V2) -->
+                <div class="swiper testimonial-swiper" data-aos="fade-in">
+                    <div class="swiper-wrapper">
+                         <div class="swiper-slide"><blockquote>"Entrei em contato com o Matias, 10 minutos e resolveu o problema,. Indico."<p class="author">- Paulo Roberto Carvalho (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"Profissional excelente! Muito responsável e compromissado com os prazos e qualidade do serviço! O melhor de Luziânia e região!"<p class="author">- Adson Marcelo (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"O sr. Matias me atendeu no mesmo dia e foi super simpático e atencioso. Solucionou o problema de forma rápida e profissional a um valor justo. Recomendo!"<p class="author">- Paulo Neira (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"Excelente serviço prestado com atenção, cuidado e bom valor"<p class="author">- Willian Silva (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"Ótimo profissional. Fez a avaliação e consertou no mesmo dia, recomendo muito."<p class="author">- Gean Carlos (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"Ótimo serviço e preço bom. Expliquei pelo telefone o problema da minha máquina de lavar, ele já veio com as peças e fez o conserto na mesma hora. Serviço de qualidade. Super indico."<p class="author">- Monierry Santos (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"Excelente atendimento. Comprometido com dias e horários marcados para atendimento. Muito honesto. Indico 👍👍"<p class="author">- Jane marcia Oliveira (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"O sr Matias é um excelente profissional. Deixou a minha geladeira novinha por um preço justo. É muito atencioso, muito educado e possui um carisma contagiante. Super recomendo os seus serviços!"<p class="author">- Leandro da Silva Alves (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"Um ótimo profissional honesto e muito dedicado no que fas. Super indico"<p class="author">- Emilce Silva botelho (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"Senhor Matias muito obrigado. Com as suas dicas a geladeira voltou a funcionar. Realmente era só limpar a mangueira em cima do motor."<p class="author">- Andreia Alves Ferreira de Souza (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"Muito satisfeita, ele é correto e preciso no defeito do eletrodoméstico. Pode confiar. Minha geladeira já foi consertada outraz vezes,mas nunca resolveram por total o defeito. O Matias fez um excelente trabalho na minha geladeira. Recomendo."<p class="author">- Meire Gomes (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"Seu Matias é top de linha demais ,não enrola e tem a solução rapidinho, parabéns seu Matias pelo ótimo trabalho e profissionalismo. Eu indico demais 👍👍"<p class="author">- Regina Ferrao (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"Matias é um excelente profissional, honesto, fácil comunicação e melhor custo beneficio entre outros profissionais."<p class="author">- Sérgio R.D (Via Google)</p></blockquote></div>
+                         <div class="swiper-slide"><blockquote>"Ecelente atendimento...sem falar que e honesto sincero o que aconteceu com o a peça a ser concertada . Super indico.👏👏👏👏👏"<p class="author">- flavio meireles (Via Google)</p></blockquote></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about"> <!-- Alterna fundo -->
+            <div class="container">
+                <h2 data-aos="fade-up">Seu Técnico de Confiança em Luziânia</h2>
+                <div class="about-content">
+                    <div class="about-image-wrapper" data-aos="fade-right" data-aos-delay="100">
+                        <img src="../assets/deusdedit_matias.webp" alt="Matias, técnico de máquinas de lavar" class="about-matias-pic">
+                    </div>
+                    <div class="about-text" data-aos="fade-left" data-aos-delay="200">
+                        <!-- Copywriting Geladeira -->
+                        <p>Há mais de duas décadas, Matias se dedica a resolver problemas de máquinas de lavar, lava e seca e geladeiras em Luziânia. A reputação foi construída na honestidade, agilidade e na satisfação de ver seu eletrodoméstico funcionando perfeitamente de novo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="objections bg-light-grey"> <!-- Alterna fundo -->
+             <div class="container">
+                 <h2 data-aos="fade-up">Respondendo suas Preocupações</h2>
+                  <!-- Copywriting Geladeira -->
+                 <p data-aos="fade-left"><strong>"Compensa o conserto?"</strong> Analisamos na hora e te dizemos com sinceridade se vale a pena ou não para o seu bolso.</p>
+                 <p data-aos="fade-left" data-aos-delay="100"><strong>"Vai levar uma eternidade?"</strong> Não! Nosso foco é agilizar. Aprovou o orçamento, aceleramos o reparo.</p>
+                 <p data-aos="fade-left" data-aos-delay="200"><strong>"O preço assusta?"</strong> Pode ficar tranquilo(a). Oferecemos um valor justo, sem taxas escondidas e com clareza total.</p>
+             </div>
+        </section>
+
+        <section class="cta-section"> <!-- Alterna fundo -->
+             <div class="container">
+                  <!-- Copywriting Geladeira -->
+                 <h2 data-aos="fade-up">Não Deixe Seus Alimentos Estragarem!</h2>
+                 <p style="font-size: 1.1em;">Sua geladeira tem solução. Resolva isso AGORA!</p>
+                 <p style="font-style: italic; margin-bottom: 25px; color: var(--text-secondary);">Não perca tempo! A agenda enche rápido. Contate-nos e garanta seu atendimento.</p>
+                  <!-- CTA Geladeira -->
+                 <a href="https://wa.me/5561996564567?text=Olá!%20Minha%20geladeira%20parou,%20preciso%20de%20ajuda%20urgente!" target="_blank" class="cta-button"><i class="fab fa-whatsapp"></i> Pedir Socorro (WhatsApp)!</a>
+                 <a href="tel:+5561996564567" class="phone-number dark"><i class="fas fa-phone-alt"></i> (61) 99656-4567</a>
+             </div>
+        </section>
+
+        <section class="faq bg-light-grey"> <!-- Alterna fundo -->
+            <div class="container">
+                <h2 data-aos="fade-up">Dúvidas Comuns</h2>
+                 <!-- Conteúdo do FAQ idêntico à V2 -->
+                <details data-aos="fade-up"><summary>Quais marcas de geladeira vocês consertam?</summary><div class="faq-content"><p>Trabalhamos com as principais marcas do mercado, como Brastemp, Consul, Electrolux, LG, Samsung, e outras. Consulte-nos sobre seu modelo específico!</p></div></details>
+                <details data-aos="fade-up" data-aos-delay="50"><summary>Atendem em toda Luziânia e região?</summary><div class="faq-content"><p>Sim, atendemos toda a área urbana de Luziânia-GO. Para regiões mais afastadas ou cidades vizinhas, por favor, consulte a disponibilidade e possível taxa de deslocamento.</p></div></details>
+                <details data-aos="fade-up" data-aos-delay="100"><summary>Qual o valor da taxa de visita?</summary><div class="faq-content"><p>Cobramos uma taxa para visita e diagnóstico, que é <strong>abatida</strong> do valor total se o serviço for aprovado. Transparência total!</p></div></details>
+                <details data-aos="fade-up" data-aos-delay="150"><summary>Que formas de pagamento são aceitas?</summary><div class="faq-content"><p>Aceitamos Dinheiro, Pix, Cartões de Débito e Crédito (consulte condições de parcelamento).</p></div></details>
+                 <details data-aos="fade-up" data-aos-delay="200"><summary>Consertam máquinas de lavar e lava e seca também?</summary><div class="faq-content"><p>Com certeza! Além de geladeiras, somos especialistas em consertos de máquinas de lavar e lava e seca. Entre em contato!</p></div></details>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© <span id="currentYear"></span> Matias Consertos - Todos os direitos reservados.</p>
+            <p>Luziânia - GO | Contato: <a href="tel:+5561996564567">(61) 99656-4567</a> | <a href="https://wa.me/5561996564567?text=Olá,%20vim%20pelo%20site." target="_blank">WhatsApp</a></p>
+            <p style="font-size: 0.85em; margin-top: 10px; opacity: 0.7;">Serviço de diagnóstico e conserto sujeito à avaliação técnica.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts (Idênticos à V2) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        const swiper = new Swiper('.testimonial-swiper', { slidesPerView: 1, spaceBetween: 30, loop: true, grabCursor: true, autoplay: { delay: 6000, disableOnInteraction: false }, pagination: { el: '.swiper-pagination', clickable: true }, navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }, breakpoints: { 768: { slidesPerView: 2, spaceBetween: 30 } }, autoHeight: true, });
+        AOS.init({ duration: 800, once: true, offset: 100 });
+    </script>
+
+     <!-- Google Tag Manager -->
+     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;s
+     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+     })(window,document,'script','dataLayer','GTM-WZQRMCWM');</script>
+     <!-- End Google Tag Manager -->
+
+</body>
+</html>
